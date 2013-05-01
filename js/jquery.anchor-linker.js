@@ -13,7 +13,7 @@
 		},
 		get_$anchor: function(anchor){
 			var anchor = anchor || $.get_anchor();
-			return $('#' + anchor).length ? $('#' + anchor) : $('[data-name="' + anchor + '"]');
+			return $('#' + anchor).length ? $('#' + anchor) : $('[data-anchor="' + anchor + '"]');
 		}
 	});
 
@@ -36,54 +36,63 @@
 				$highlight.addClass(options.highlightClass);
 			}else{
 				$highlight.css({
-					'background': options.backgroundColor,
+					'background-color': options.backgroundColor,
 					'color': options.color,
 				});
 			}
 
 			$highlight.css('display', 'inline-block');
 
-			var $anchor, anchor, anchor_top, id;
-			
+			var $anchor, anchor, anchor_top, id, anchor_index = 0;
+
 			this.each(function(index, element){
-				index++;
 				var $this = $(this);
-			
+
+				if(!index && $('[data-anchor^="anchor"]').length){
+					anchor_index = parseInt(/(\d+)/.exec($('[data-anchor^="anchor"]:last').attr('data-anchor'))[0]);
+				}
+
+				anchor_index++;
+
 				$clone_permalink = $permalink.clone();
 			
 				if($this.attr('id')){
 					id = $this.attr('id');
 					$clone_permalink.attr('href', '#' + id);
 				}else{
-					$clone_permalink.attr('href', '#anchor' + index);
+					$clone_permalink.attr('href', '#anchor' + anchor_index);
 				}
 			
 				$clone_permalink.css({ 'font-size': '0.7em' });
 				$this.append($clone_permalink);
-				$this.attr('data-name', 'anchor' + index);
+				$this.attr('data-anchor', 'anchor' + anchor_index);
 			});
+
+			function slideAndAnimate(px){
+				if(typeof px === 'undefined') px = null;
+				$('html:not(:animated), body:not(:animated)').animate({
+					scrollTop: anchor_top
+				}, options.scrollDelay);				
+			}
 			
 			if($.get_anchor()){
 				$anchor = $.get_$anchor();
 				anchor_top = $anchor.offset().top;
-				$anchor.wrapInner($highlight);
-				$('html:not(:animated), body:not(:animated)').animate({
-					scrollTop: anchor_top
-				}, options.scrollDelay);
+				$clone_highlight = $highlight.clone();
+				$anchor.wrapInner($clone_highlight);
+				slideAndAnimate();
 			}
 			
-			$('.anchor-link').live('click', function(event){
+			$('.anchor-link').on('click', function(event){
 				$highlighted = $('.anchor-highlighted');
 				if($highlighted.length){
 					$highlighted.parent().html($highlighted.html());
 				}
 				anchor = $(this).attr('href').replace('#', '');
-				$anchor = $.get_$anchor(anchor);;
+				$anchor = $.get_$anchor(anchor);
 				anchor_top = $anchor.offset().top;
 				$anchor.wrapInner($highlight);
-				$('html:not(:animated), body:not(:animated)').animate({
-					scrollTop: anchor_top
-				}, options.scrollDelay);
+				slideAndAnimate(anchor_top);
 			});
 		}
 	});
