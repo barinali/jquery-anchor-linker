@@ -22,6 +22,7 @@
 			var defaults = {
 				anchorName: 'anchor',
 				anchorLinkClass: 'anchor-link',	//will be add anchor link 's class property
+				autoHide: false,
 				backgroundColor: '#00adef',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
 				color: '#fff',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
 				highlightClass: '',	//if enter the value this field, backgroundColor, color properties will be disable.
@@ -31,6 +32,8 @@
 			var options = $.extend(defaults, options),
 					$permalink = $('<a class="' + options.anchorLinkClass + '" href="#">&para;</a>'),
 					$highlight = $('<span class="anchor-highlighted" />');
+
+			if(options.autoHide) $permalink.hide();
 
 			if(options.highlightClass.length){
 				$highlight.addClass(options.highlightClass);
@@ -43,43 +46,57 @@
 
 			$highlight.css('display', 'inline-block');
 
-			var $anchor, anchor, anchor_top, id, anchor_index = 0;
+			var $anchor, anchor, anchorTop, id, anchorIndex = 0;
 
 			this.each(function(index, element){
 				var $this = $(this);
 
 				if(!index && $('[data-anchor^="anchor"]').length){
-					anchor_index = parseInt(/(\d+)/.exec($('[data-anchor^="anchor"]:last').attr('data-anchor'))[0]);
+					anchorIndex = parseInt(/(\d+)/.exec($('[data-anchor^="anchor"]:last').attr('data-anchor'))[0]);
 				}
 
-				anchor_index++;
+				anchorIndex++;
 
-				$clone_permalink = $permalink.clone();
+				$clonePermalink = $permalink.clone();
 			
 				if($this.attr('id')){
 					id = $this.attr('id');
-					$clone_permalink.attr('href', '#' + id);
+					$clonePermalink.attr('href', '#' + id);
 				}else{
-					$clone_permalink.attr('href', '#anchor' + anchor_index);
+					$clonePermalink.attr('href', '#anchor' + anchorIndex);
 				}
 			
-				$clone_permalink.css({ 'font-size': '0.7em' });
-				$this.append($clone_permalink);
-				$this.attr('data-anchor', 'anchor' + anchor_index);
+				$clonePermalink.css({ 'font-size': '0.7em' });
+				$this.append($clonePermalink);
+				$this.attr('data-anchor', 'anchor' + anchorIndex);
+
+				var hideActive = 0, $p;
+				$this.hover(function(){
+					$p = $('.' + options.anchorLinkClass, this);
+					if($p.is(':hidden')){
+						hideActive = 1;
+						$p.show();
+					}
+				}, function(){
+					if(hideActive){
+						$p.hide();
+						hideActive = 0;						
+					}
+				});
 			});
 
 			function slideAndAnimate(px){
 				if(typeof px === 'undefined') px = null;
 				$('html:not(:animated), body:not(:animated)').animate({
-					scrollTop: anchor_top
+					scrollTop: anchorTop
 				}, options.scrollDelay);				
 			}
 			
 			if($.get_anchor()){
 				$anchor = $.get_$anchor();
-				anchor_top = $anchor.offset().top;
-				$clone_highlight = $highlight.clone();
-				$anchor.wrapInner($clone_highlight);
+				anchorTop = $anchor.offset().top;
+				$cloneHighlight = $highlight.clone();
+				$anchor.wrapInner($cloneHighlight);
 				slideAndAnimate();
 			}
 			
@@ -90,9 +107,9 @@
 				}
 				anchor = $(this).attr('href').replace('#', '');
 				$anchor = $.get_$anchor(anchor);
-				anchor_top = $anchor.offset().top;
+				anchorTop = $anchor.offset().top;
 				$anchor.wrapInner($highlight);
-				slideAndAnimate(anchor_top);
+				slideAndAnimate(anchorTop);
 			});
 		}
 	});
