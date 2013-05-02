@@ -20,9 +20,11 @@
 	$.fn.extend({
 		anchorlinker: function(options){
 			var defaults = {
+				after: function(){},
 				anchorName: 'anchor',
 				anchorLinkClass: 'anchor-link',	//will be add anchor link 's class property
 				autoHide: false,
+				before: function(){},
 				backgroundColor: '#00adef',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
 				color: '',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
 				backgroundColorTo: 'transparent',
@@ -34,6 +36,8 @@
 			var options = $.extend(defaults, options),
 					$permalink = $('<a class="' + options.anchorLinkClass + '" href="#">&para;</a>'),
 					$highlight = $('<span class="anchor-highlighted" />');
+
+			window.animated = 0;
 
 			if(options.autoHide) $permalink.hide();
 
@@ -94,14 +98,28 @@
 
 			function slideAndAnimate(px){
 				if(typeof px === 'undefined') px = null;
-				$('html:not(:animated), body:not(:animated)').animate({
+
+				options.before();
+
+				var i = 0;
+
+				$('html:not(:animated), body:not(:animated)').stop().animate(
+				{
 					scrollTop: anchorTop
-				}, options.scrollDuration, function(){
-					$('.anchor-highlighted').css({
-						'background': options.backgroundColorTo,
-						'color': 'inherit'
-					});
-				});				
+				},
+				{
+					duration: options.scrollDuration,
+					complete: function(){
+						i++;
+						if(i === $('html, body').length){
+							$('.anchor-highlighted').css({
+								'background': options.backgroundColorTo,
+								'color': 'inherit'
+							});
+							options.after();
+						}
+					}
+				});
 			}
 			
 			if($.get_anchor()){
