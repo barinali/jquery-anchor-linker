@@ -1,6 +1,6 @@
 /**
- * Anchor Linker v0.1
- * github repo link
+ * jQuery Anchor Linker v0.1
+ * https://github.com/alibarin/jquery-anchor-linker
  *
  * Licensed under the MIT license.
  * Copyright 2012 Ali BARIN
