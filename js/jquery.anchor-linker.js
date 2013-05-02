@@ -23,6 +23,7 @@
 				after: function(){},
 				anchorName: 'anchor',
 				anchorLinkClass: 'anchor-link',	//will be add anchor link 's class property
+				anchorLinkHtml: '&para;',
 				autoHide: false,
 				before: function(){},
 				backgroundColor: '#00adef',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
@@ -34,7 +35,7 @@
 			};
 
 			var options = $.extend(defaults, options),
-					$permalink = $('<a class="' + options.anchorLinkClass + '" href="#">&para;</a>'),
+					$permalink = $('<a class="' + options.anchorLinkClass + '" href="#">' + options.anchorLinkHtml + '</a>'),
 					$highlight = $('<span class="anchor-highlighted" />');
 
 			window.animated = 0;

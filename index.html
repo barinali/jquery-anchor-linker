@@ -7,6 +7,11 @@
 			font-family: Helvetica, Arial, sans-serif;
 			font-size: 0.9em;
 		}
+
+		.container{
+			margin: 0 auto;
+			width: 940px;
+		}
 	</style>
 	<script src="./js/libs/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="./js/jquery.anchor-linker.js" type="text/javascript"></script>
@@ -14,49 +19,51 @@
 </head>
 <body>
 
-<div style="text-align: center;">
-	<h1 class="heading heading1 first" id="one-head">A Simple Sample Web Page</h1>
+	<div class="container">
+		<div style="text-align: center;">
+			<h1 class="heading heading1 first" id="one-head">A Simple Sample Web Page</h1>
 
-	<h4 class="heading">By Sheldon Brown</h4>
+			<h4 class="heading">By Sheldon Brown</h4>
 
-	<h2>Demonstrating a few HTML features</h2>
-</div>
+			<h2>Demonstrating a few HTML features</h2>
+		</div>
 
-<p>HTML is really a very simple language. It consists of ordinary text, with commands that are enclosed by "&#60;" and "&#62;" characters, or bewteen an "&amp;" and a ";".</p>
+		<p>HTML is really a very simple language. It consists of ordinary text, with commands that are enclosed by "&#60;" and "&#62;" characters, or bewteen an "&amp;" and a ";".</p>
 
-<p>You don't really need to know much HTML to create a page, because you can copy bits of HTML from other pages that do what you want, then change the text!</p>
+		<p>You don't really need to know much HTML to create a page, because you can copy bits of HTML from other pages that do what you want, then change the text!</p>
 
-<p>This page shows on the left as it appears in your browser, and the corresponding HTML code appears on the right. The HTML commands are linked to explanations of what they do.</p>
+		<p>This page shows on the left as it appears in your browser, and the corresponding HTML code appears on the right. The HTML commands are linked to explanations of what they do.</p>
 
-<h3 class="heading3">Line Breaks</h3>
+		<h3 class="heading3">Line Breaks</h3>
 
-<p>HTML doesn't normally use line breaks for ordinary text. A white space of any size is treated as a single space. This is because the author of the page has no way of knowing the size of the reader's screen, or what size type they will have their browser set for.</p>
+		<p>HTML doesn't normally use line breaks for ordinary text. A white space of any size is treated as a single space. This is because the author of the page has no way of knowing the size of the reader's screen, or what size type they will have their browser set for.</p>
 
-<p>If you want to put a line break at a particular place, you can use the "<br>" command, or, for a paragraph break, the "&#60;p&#62;" command, which will insert a blank line. The heading command ("") puts a blank line above and below the heading text.</p> 
+		<p>If you want to put a line break at a particular place, you can use the "<br>" command, or, for a paragraph break, the "&#60;p&#62;" command, which will insert a blank line. The heading command ("") puts a blank line above and below the heading text.</p> 
 
-<h4>Starting and Stopping Commands</h4>
+		<h4>Starting and Stopping Commands</h4>
 
-<p>Most HTML commands come in pairs: for example, "&#60;h4&#62;" marks the beginning of a size 4 heading, and "&#60;/h4&#62;" marks the end of it. The closing command is always the same as the opening command, except for the addition of the "/".</p>
+		<p>Most HTML commands come in pairs: for example, "&#60;h4&#62;" marks the beginning of a size 4 heading, and "&#60;/h4&#62;" marks the end of it. The closing command is always the same as the opening command, except for the addition of the "/".</p>
 
-<p>Modifiers are sometimes included along with the basic command, inside the opening command's &#60; &#62;. The modifier does not need to be repeated in the closing command.</p>
+		<p>Modifiers are sometimes included along with the basic command, inside the opening command's &#60; &#62;. The modifier does not need to be repeated in the closing command.</p>
 
-<h1>This is a size "1" heading</h1>
+		<h1>This is a size "1" heading</h1>
 
-<h2>This is a size "2" heading</h2>
+		<h2>This is a size "2" heading</h2>
 
-<h3>This is a size "3" heading</h3>
+		<h3>This is a size "3" heading</h3>
 
-<h4>This is a size "4" heading</h4>
+		<h4>This is a size "4" heading</h4>
 
-<h5>This is a size "5" heading</h5>
+		<h5>This is a size "5" heading</h5>
 
-<h6>This is a size "6" heading</h6>
+		<h6>This is a size "6" heading</h6>
 
-<div id="footer" style="text-align: center;">
-	<h4>Copyright © 1997, by
-		<a href="#footer" href="http://sheldonbrown.com/index.html">Sheldon Brown</a>
-	</h4>
-</div>
+		<div id="footer" style="text-align: center;">
+			<h4>Copyright © 1997, by
+				<a href="#footer" href="http://sheldonbrown.com/index.html">Sheldon Brown</a>
+			</h4>
+		</div>
+	</div>
 
 </body>
 </html>
