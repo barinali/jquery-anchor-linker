@@ -27,7 +27,7 @@ __backgroundColor__: '#00adef',<br />
 __color__: '',<br />
 // highlighted anchor 's background color fade to this color (color name as string, hex code, rgb, rgba)<br />
 __backgroundColorTo__: 'transparent',<br />
-// background fade/transition duration	(s/ms as string. example: 300ms, 1s etc.)
+// background fade/transition duration	(s/ms as string. example: 300ms, 1s etc.)<br />
 __transitionDuration__: '500ms',<br />
 // add to highlighted anchor 's class attribute<br />
 __highlightClass__: '',<br />
