@@ -15,7 +15,7 @@ __after__: function(){},<br />
 __anchorName__: 'anchor',<br />
 // add to anchor link 's class attribute	(string)<br />
 __anchorLinkClass__: 'anchor-link',<br />
-// anchor link 's content__	(string)
+// anchor link 's content__	(string)<br />
 __anchorLinkHtml__: '&para;',<br />
 // auto hide anchor link	(boolean, true/false)<br />
 __autoHide__: false,<br />
