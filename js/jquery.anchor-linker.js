@@ -22,16 +22,16 @@
 			var defaults = {
 				after: function(){},
 				anchorName: 'anchor',
-				anchorLinkClass: 'anchor-link',	//will be add anchor link 's class property
+				anchorLinkClass: 'anchor-link',
 				anchorLinkHtml: '&para;',
 				autoHide: false,
+				backgroundColor: '#00adef',
 				before: function(){},
-				backgroundColor: '#00adef',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
-				color: '',	// available values: hex, rgb, rgba, color name (lightpink, lightblue, blue, yellow etc.)
+				color: '',
 				backgroundColorTo: 'transparent',
-				transitionDuration: '500ms',
-				highlightClass: '',	//if enter the value this field, backgroundColor, color properties will be disable.
-				scrollDuration: 500	//scroll animate duration
+				highlightClass: '',
+				scrollDuration: 500,
+				transitionDuration: '500ms'
 			};
 
 			var options = $.extend(defaults, options),
